@@ -26,7 +26,10 @@ router.post('/signup', async (req, res) => {
     );
     try {
         const newUser = await user.save();
-        res.send(newUser);
+        const token = jwt.sign({ _id: newUser._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+        const refreshToken = jwt.sign({ _id: newUser._id }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
+        res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 604800000 });
+        res.header('Authorization', token).json({ token: token, refreshToken: refreshToken });
     } catch (err) {
         res.status(400).send(err);
     }
@@ -49,7 +52,7 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ _id: userExist._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
     const refreshToken = jwt.sign({ _id: userExist._id }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
     res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 604800000 });
-    res.header('Authorization', token).json({token:token, refreshToken:refreshToken});
+    res.header('Authorization', token).json({ token: token, refreshToken: refreshToken });
 
 });
 
@@ -62,7 +65,7 @@ router.post('/refresh', async (req, res) => {
         const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
         const refreshToken = jwt.sign({ _id: user._id }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
         res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 604800000 });
-        res.header('Authorization', token).json({token:token, refreshToken:refreshToken});
+        res.header('Authorization', token).json({ token: token, refreshToken: refreshToken });
     });
 });
 

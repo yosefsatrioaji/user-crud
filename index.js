@@ -20,7 +20,7 @@ const userManagement = require('./routes/userManagement');
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api/user', authRoute);
-app.use('/api/data', userData);
+app.use('/api/udata', userData);
 app.use('/api/umanagement', userManagement);
 
 app.get('/', (req, res) => {
