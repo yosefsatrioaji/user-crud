@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-crud-deployment
+  labels:
+    app: user-crud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-crud
+  template:
+    metadata:
+      labels:
+        app: user-crud
+    spec:
+      containers:
+      - name: user-crud-server
+        image: yosef26/user-crud:latest
+        ports:
+        - containerPort: 3000
