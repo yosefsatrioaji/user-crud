@@ -1,11 +1,13 @@
 # user-crud
  
-This is Simple User Crud Project
+This is Simple User Crud Project using Express.js Framework 🚀
 
 ## Feature
 - 2 roles (admin and user)
 - Signup (require username and password only)
 - Login (require username and password only)
+- Using JWT for authorization
+- Using JWT refresh for more secure authorization
 - Username unique validator
 - Username and password length validator
 - Update username and password
