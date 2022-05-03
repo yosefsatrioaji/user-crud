@@ -24,6 +24,9 @@ This is Simple User Crud Project using Express.js Framework 🚀
 ## Postman Documentation
 https://link.yosefsa.xyz/UserCrudPostmanDoc
 
+## API Flow
+https://link.yosefsa.xyz/UserCrudAPIFlow
+
 ## User credentials
 ### Admin
 username: Admin1
