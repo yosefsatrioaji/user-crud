@@ -3,6 +3,8 @@ const verifyToken = require('../middleware/verifyToken');
 const { updateValidation } = require('../validation');
 const User = require('../model/User');
 
+/* This is a get request to the /api/user route. It is using the verifyToken middleware to verify the
+token. If the token is valid, it will return the username and role of the user. */
 router.get('/', verifyToken, async (req, res) => {
     const user = req.user;
     const userData = await User.findById(user._id);
@@ -10,6 +12,7 @@ router.get('/', verifyToken, async (req, res) => {
     res.json({ usename: userData.username, role: userData.role });
 });
 
+/* This code is updating the user's data. */
 router.patch('/update', verifyToken, async (req, res) => {
     const user = req.user;
     const userData = await User.findById(user._id);

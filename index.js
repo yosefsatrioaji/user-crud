@@ -23,6 +23,8 @@ app.use('/api/user', authRoute);
 app.use('/api/udata', userData);
 app.use('/api/umanagement', userManagement);
 
+/* This is a route handler. It is listening for a GET request to the root route (/) and then sending
+back a response of "Hello World". */
 app.get('/', (req, res) => {
     res.send('Hello World');
 });

@@ -5,6 +5,9 @@ const User = require('../model/User');
 const { authValidation } = require('../validation');
 
 
+/* This is the signup route. It is validating the user input, checking if the user already exists,
+hashing the password, and then saving the user to the database. It is also creating a token and
+refresh token and sending them back to the client. */
 router.post('/signup', async (req, res) => {
     //validate
     const { error } = authValidation(req.body);
@@ -35,6 +38,8 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+/* This is the login route. It is validating the user input, checking if the user exists, comparing the
+password, and then creating a token and refresh token and sending them back to the client. */
 router.post('/login', async (req, res) => {
     //validate
     const { error } = authValidation(req.body);
@@ -56,6 +61,8 @@ router.post('/login', async (req, res) => {
 
 });
 
+/* This is the refresh token route. It is checking if the refresh token exists, verifying the refresh
+token, and then creating a new token and refresh token and sending them back to the client. */
 router.post('/refresh', async (req, res) => {
     if (!req.cookies?.jwt) return res.status(400).send('No refresh token');
     const refreshToken = req.cookies.jwt;

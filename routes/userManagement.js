@@ -5,6 +5,7 @@ const checkRole = require('../middleware/checkRole');
 const { authValidation, updateValidation } = require('../validation');
 const User = require('../model/User');
 
+/* This is a route that is used to get all users. */
 router.get('/alluser', verifyToken, async (req, res) => {
     const user = req.user;
     if (await checkRole(user) !== 'admin') return res.status(401).send('You are not authorized to perform this action');
@@ -13,6 +14,7 @@ router.get('/alluser', verifyToken, async (req, res) => {
     res.json(users);
 });
 
+/* This is a route that is used to search for a user by username. */
 router.post('/searchbyuname', verifyToken, async (req, res) => {
     const user = req.user;
     if (await checkRole(user) !== 'admin') return res.status(401).send('You are not authorized to perform this action');
@@ -22,6 +24,7 @@ router.post('/searchbyuname', verifyToken, async (req, res) => {
     res.send(userData);
 });
 
+/* This is a route that is used to search for a user by id. */
 router.get('/getbyid/:id', verifyToken, async (req, res) => {
     const user = req.user;
     if (await checkRole(user) !== 'admin') return res.status(401).send('You are not authorized to perform this action');
@@ -31,6 +34,7 @@ router.get('/getbyid/:id', verifyToken, async (req, res) => {
     res.send(userData);
 });
 
+/* This is a route that is used to create a user. */
 router.post('/createuser', verifyToken, async (req, res) => {
     const user = req.user;
     if (await checkRole(user) !== 'admin') return res.status(401).send('You are not authorized to perform this action');
@@ -61,6 +65,7 @@ router.post('/createuser', verifyToken, async (req, res) => {
     }
 });
 
+/* This is a route that is used to delete a user by username. */
 router.delete('/deleteuser', verifyToken, async (req, res) => {
     const user = req.user;
     if (await checkRole(user) !== 'admin') return res.status(401).send('You are not authorized to perform this action');
@@ -74,6 +79,7 @@ router.delete('/deleteuser', verifyToken, async (req, res) => {
     }
 });
 
+/* This is a route that is used to delete a user by id. */
 router.delete('/deletebyid/:id', verifyToken, async (req, res) => {
     const user = req.user;
     if (await checkRole(user) !== 'admin') return res.status(401).send('You are not authorized to perform this action');
@@ -87,6 +93,7 @@ router.delete('/deletebyid/:id', verifyToken, async (req, res) => {
     }
 });
 
+/* This is a route that is used to update a user by id. */
 router.patch('/updateuser/:id', verifyToken, async (req, res) => {
     const user = req.user;
     if (await checkRole(user) !== 'admin') return res.status(401).send('You are not authorized to perform this action');

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+/* This is a middleware function that checks if the user is logged in. */
 module.exports = function (req, res, next) {
     if(!req.headers.authorization) return res.status(401).send('Unauthorized request');
     const token = req.header('Authorization').split(' ')[1];
