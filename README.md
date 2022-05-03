@@ -37,3 +37,6 @@ password: Admin1
 username: User1234
 
 password: password
+
+## Demo URL
+http://168.138.173.46:5000/
